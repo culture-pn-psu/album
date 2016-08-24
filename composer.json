@@ -1,13 +1,13 @@
 {
-    "name": "culture-pn-psu/yii2-activity",
-    "description": "Activity management system for Yii2",
+    "name": "culture-pn-psu/yii2-album",
+    "description": "Album management system for Yii2",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"],
     "license": "GPL-3.0",
     "minimum-stability": "stable",
     "support": {
-        "source": "https://github.com/culture-pn-psu/yii2-activity.git",
-        "issues": "https://github.com/culture-pn-psu/yii2-activity/issues"
+        "source": "https://github.com/culture-pn-psu/yii2-album.git",
+        "issues": "https://github.com/culture-pn-psu/yii2-album/issues"
     },
     "authors": [
         {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "culturePnPsu\\activity\\": ""
+            "culturePnPsu\\album\\": ""
         }
     }
 }
