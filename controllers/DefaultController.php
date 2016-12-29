@@ -36,6 +36,7 @@ class DefaultController extends Controller {
     public function actionIndex() {
         $searchModel = new AlbumSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->sort->defaultOrder = ['start' => SORT_DESC];
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
@@ -62,12 +63,16 @@ class DefaultController extends Controller {
     public function actionCreate($id = null) {
         if ($id === NULL) {
             $model = new Album();
+            $model->created_by = Yii::$app->user->id;
+            $model->created_at = time();
             if ($model->save(false)) {
                 return $this->redirect(['create', 'id' => $model->id]);
             }
         } elseif ($id) {
             $model = $this->findModel($id);
             if ($model->load(Yii::$app->request->post())) {
+                $model->updated_by = Yii::$app->user->id;
+                $model->updated_at = time();
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
                 } else {
@@ -93,6 +98,8 @@ class DefaultController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->updated_by = Yii::$app->user->id;
+            $model->updated_at = time();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

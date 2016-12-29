@@ -56,7 +56,7 @@ class Album extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => Yii::t('album', 'รหัสอัลบั้ม'),
-            'category_id' => Yii::t('album', 'รหัสหมวด'),
+            'category_id' => Yii::t('album', 'หมวดหมู่'),
             'title' => Yii::t('album', 'ชื่ออัลบั้ม'),
             'status' => Yii::t('album', 'แสดง'),
             'detail' => Yii::t('album', 'รายละเอียด'),
@@ -68,8 +68,8 @@ class Album extends \yii\db\ActiveRecord {
             'updated_at' => Yii::t('album', 'แก้ไขเมื่อ'),
             'updated_by' => Yii::t('album', 'แก้ไขโดย'),
             'images_file' => Yii::t('art', 'รูปภาพ'),
-            'start' => Yii::t('album', 'Start'),
-           'end' => Yii::t('album', 'End'),
+            'start' => Yii::t('album', 'เริ่มกิจกรรม'),
+           'end' => Yii::t('album', 'สิ้นสุดกิจกรรม'),
         ];
     }
 
@@ -214,7 +214,7 @@ class Album extends \yii\db\ActiveRecord {
     }
     
     public static function getIndex() {
-        return self::find()->where(['status'=>1])->all();
+        return self::find()->where(['status'=>1])->orderBy(['start'=>SORT_DESC])->all();
     }
 
 }
